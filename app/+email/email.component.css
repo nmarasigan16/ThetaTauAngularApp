@@ -1,0 +1,10 @@
+.wrapper{
+	height: 100%
+}
+md-input{
+	width:100%;
+}
+textarea{
+	width: 100%;
+	min-height: 100px;
+}

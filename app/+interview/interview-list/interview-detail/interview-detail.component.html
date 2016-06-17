@@ -1,0 +1,28 @@
+<div style="height:100%;" layout="column" layout-align="center center">
+	<md-card style="width:33%;">
+		<md-toolbar class="primary" style="position:relative;">
+			<button md-button class="md-icon-button" style="color: #FFCC33;" (click)="goBack()">
+				<i class="material-icons">arrow_back</i>
+			</button>
+			Interview
+		</md-toolbar>
+		<md-content>
+			<md-list>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">face</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Brother/Pledge</h3>
+						<p>{{interview.brother}}</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info_outline</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Summary</h3>
+						<p>{{interview.description}}</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</md-card>
+</div>
