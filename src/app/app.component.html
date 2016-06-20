@@ -1,3 +1,33 @@
-<h1>
-  {{title}}
-</h1>
+<!--Toolbar-->
+<md-toolbar breakaction="show" class="fixed-toolbar primary">
+  <button  md-button class="md-icon-button" aria-label="Settings" style="color:#DAA520" (click)="left.toggle()">
+    <i md-icon>menu</i>
+  </button>
+  <span>Theta Tau Webapp</span>
+  <span flex></span>
+  <button md-button class="md-icon-button" aria-label="More" style="color:#DAA520;">
+    <i md-icon>more_vert</i>
+  </button>
+</md-toolbar>
+
+<!--sidenav-->
+<div layout="column" class="navigation">
+  <md-sidenav-layout class="layout">
+    <md-sidenav #left class="app-menu md-sidenav-side" mode="over">
+      <!-- List of things for sidenav -->
+      <md-list>
+        <md-list-item (click)="left.toggle()" class="md-2-line" *ngFor="let action of actions" [routerLink]="[action.link]" [class.selected]="action===selectedAction" (click)="onSelect(action)">
+          <div class="md-list-item-text">
+            <h3>{{ action.name }}</h3>
+            <p>{{ action.description }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+    <md-content layout="column" class="backdrop">
+          <router-outlet></router-outlet>
+    </md-content>
+    <!-- TODO insert routes -->
+
+  </md-sidenav-layout>
+</div>

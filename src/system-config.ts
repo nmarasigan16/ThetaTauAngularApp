@@ -7,11 +7,34 @@
  **********************************************************************************************/
 /** Map relative paths to URLs. */
 const map: any = {
+  '@angular2-material': 'vendor/@angular2-material',
+  'ng2-material': 'vendor/ng2-material',
+  '@angular/router-deprecated': 'vendor/@angular/router-deprecated'
 };
 
 /** User packages configuration. */
 const packages: any = {
+  'ng2-material': { defaultExtension: 'js', main: 'index.js' },
+  '@angular/router-deprecated': { defaultExtension: 'js', main: 'index.js' }
 };
+
+const materialPkgs: string[] = [
+    'core',
+    'button',
+    'card',
+    'input',
+    'list',
+    'sidenav',
+    'toolbar',
+    'checkbox',
+    'progress-bar',
+    'progress-circle',
+    'radio',
+];
+
+materialPkgs.forEach((pkg) => {
+    packages[`@angular2-material/${pkg}`] = { main: `${pkg}.js` };
+});
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
 /***********************************************************************************************
@@ -33,6 +56,7 @@ const barrels: string[] = [
   // App specific barrels.
   'app',
   'app/shared',
+  'app/moo',
   /** @cli-barrel */
 ];
 

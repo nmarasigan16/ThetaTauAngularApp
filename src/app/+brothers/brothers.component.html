@@ -1,0 +1,15 @@
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Brothers</span>
+			<span flex></span>
+			<md-input type="search" #input (keyup)="0" placeholder="Search"></md-input>
+			<button md-button class="md-icon-button">
+				<i class="material-icons">search</i>
+			</button>
+		</md-toolbar>
+		<md-card-content>
+			<brother-list [term]="input.value"></brother-list>
+		</md-card-content>
+	</md-card>
+</div>
