@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MATERIAL_DIRECTIVES} from 'ng2-material';
-import { LoginComponent } from './+login';
 import { ROUTER_DIRECTIVES } from '@angular/router';
+import { LoginComponent } from './+login';
 import { Action } from './properties/action';
 
 
@@ -12,8 +12,7 @@ import { Action } from './properties/action';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  directives: [MD_TOOLBAR_DIRECTIVES, MATERIAL_DIRECTIVES, MD_SIDENAV_DIRECTIVES, ROUTER_DIRECTIVES],
-  providers: [ROUTER_PROVIDERS]
+  directives: [MD_TOOLBAR_DIRECTIVES, MATERIAL_DIRECTIVES, MD_SIDENAV_DIRECTIVES, ROUTER_DIRECTIVES]
 })
 
 export class AppComponent {
