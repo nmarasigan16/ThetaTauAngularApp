@@ -1,3 +1,34 @@
-<p>
-  brother-list works!
-</p>
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Brothers</span>
+			<span flex></span>
+			<md-input type="search" #input (keyup)="term=input.value" placeholder="Search"></md-input>
+			<button md-button class="md-icon-button">
+				<i class="material-icons">search</i>
+			</button>
+		</md-toolbar>
+		<md-card-content>
+			<md-data-table layout-fill>
+				<thead>
+				<tr>
+					<th class="md-text-cell sorted-ascending">Name</th>
+					<th class="md-text-cell">Email</th>
+					<th>Phone Number</th>
+					<th class="md-text-cell">City</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let brother of brothers | search: term" (click)="gotoDetail(brother.id)">
+					<td class="md-text-cell sorted-ascending">{{brother.name}}</td>
+					<td class="md-text-cell">{{brother.email}}</td>
+					<td>{{brother.phone_number}}</td>
+					<td class="md-text-cell">{{brother.city}}</td>
+				</tr>
+				</tbody>
+			</md-data-table>
+		</md-card-content>
+	</md-card>
+</div>
+
+
