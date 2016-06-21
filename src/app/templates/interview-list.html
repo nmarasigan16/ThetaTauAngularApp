@@ -1,0 +1,45 @@
+<md-dialog #add (onClose)="addClose($event)">
+  <md-dialog-title>Add an interview</md-dialog-title>
+  <!-- TODO add validation here -->
+  <form>
+  	<md-input #in placeholder="Brother/Pledge who was interviewed" type="text"></md-input>
+  	<textarea #desc placeholder="Interview summary"></textarea>
+  </form>
+  <span flex></span>
+  <md-dialog-actions>
+      <button md-button (click)="add.close(in.value + '`' + desc.value)">
+      	<span>Add</span>
+      </button>
+      <button md-button (click)="add.close(0)">
+      	<span>Cancel</span>
+      </button>
+  </md-dialog-actions>
+</md-dialog>
+
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Interviews</span>
+			<span flex></span>
+		</md-toolbar>
+		<md-card-content>
+			<md-data-table layout-fill>
+        <thead>
+        <tr>
+          <th class="md-text-cell">Brother/Pledge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let interview of interviews" (click)="gotoDetail(interview.id)">
+          <td class="md-text-cell">{{interview.brother}}</td>
+        </tr>
+        </tbody>
+      </md-data-table>
+		</md-card-content>
+		<md-card-actions layout="row" layout-align="end center" style="height:0px;">
+			<button md-fab layout-align="end center" class="add" (click)="add.show()">
+				<i md-icon>add</i>
+			</button>
+		</md-card-actions>
+	</md-card>
+</div>
