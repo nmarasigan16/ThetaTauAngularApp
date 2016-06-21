@@ -1,0 +1,35 @@
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Events</span>
+			<span flex></span>
+			<button md-raised-button *ngFor="let t of types" (click)="type=t.value">
+			{{t.label}}
+			</button>
+			<md-input type="search" #input (keyup)="term=input.value" placeholder="Search"></md-input>
+			<button md-button class="md-icon-button" >
+				<i class="material-icons">search</i>
+			</button>
+		</md-toolbar>
+		<md-card-content>
+			<md-data-table layout-fill>
+				<thead>
+				<tr>
+					<th class="md-text-cell">Name</th>
+					<th class="md-text-cell">Date</th>
+					<th class="md-text-cell">Location</th>
+					<th class="md-text-cell">Type</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr *ngFor="let event of events | filter: type | search: term" (click)="gotoDetail(event.id)">
+					<td class="md-text-cell">{{event.name}}</td>
+					<td class="md-text-cell">{{event.date | date: "large"}}</td>
+					<td class="md-text-cell">{{event.location}}</td>
+					<td class="md-text-cell">{{event.type}}</td>
+				</tr>
+				</tbody>
+			</md-data-table>
+		</md-card-content>
+	</md-card>
+</div>

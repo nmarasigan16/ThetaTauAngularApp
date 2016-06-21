@@ -1,0 +1,28 @@
+<div style="height:100%;" layout="column" layout-align="center center">
+	<md-card style="width:33%;">
+		<md-toolbar class="primary" style="position:relative;">
+			<button md-button class="md-icon-button" style="color: #FFCC33;" (click)="goBack()">
+				<i class="material-icons">arrow_back</i>
+			</button>
+			{{brother.name}}
+		</md-toolbar>
+		<md-content>
+			<md-list>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">phone</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>{{brother.phone_number}}</h3>
+						<p>Phone</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">email</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>{{brother.email}}</h3>
+						<p>Email</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-content>
+	</md-card>
+</div>
