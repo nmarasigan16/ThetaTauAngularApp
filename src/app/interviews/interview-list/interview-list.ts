@@ -17,7 +17,7 @@ import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
 export class InterviewListComponent implements OnInit {
 
 	interviews: Interview[] = [
-		{ "id": 1, "brother": "Nathan", "description": "Too cool man" }
+		{ "id": 1, "pledge_id": 1, "pledge": "John", "brother": "Nathan", "description": "Too cool man" }
 	];
 
   constructor(private router: Router) {}
@@ -27,7 +27,7 @@ export class InterviewListComponent implements OnInit {
 
   gotoDetail(interview_id: number) {
 	  console.log(interview_id)
-	  let link = ['/interviews', interview_id];
+	  let link = ['/interviews/detail', interview_id];
 	  this.router.navigate(link);
   }
   addClose(val:string){
