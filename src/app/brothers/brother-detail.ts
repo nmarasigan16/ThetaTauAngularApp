@@ -14,7 +14,7 @@ import { Brother } from '../properties/brother';
 })
 export class BrotherDetailComponent{
 
-	constructor(private router: Router, private route: ActivatedRoute){
+	constructor(private router: Router){
 
 	}
 
