@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SearchPipe } from './pipes/search.pipe';
-import { TypePipe } from './pipes/type.pipe';
+import { SearchPipe } from '../pipes/search.pipe';
+import { TypePipe } from '../pipes/type.pipe';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
-import { Event } from '../properties/event'
+import { Event } from '../../properties/event'
 
 @Component({
+	moduleId: module.id,
 	selector:'event-list',
 	pipes:[ SearchPipe, TypePipe ],
 	directives: [MATERIAL_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_TOOLBAR_DIRECTIVES ],
-	templateUrl: './app/templates/event-list.html',
-	styleUrls: ['./app/styles/event-list.css']
+	templateUrl: 'event-list.html',
+	styleUrls: ['event-list.css']
 
 })
 export class EventListComponent{

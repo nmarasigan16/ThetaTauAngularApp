@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Interview } from '../properties/interview';
+import { Interview } from '../../properties/interview';
 import { MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
 
 @Component({
+  moduleId: module.id,
   selector: 'interview-list',
-  templateUrl: 'app/templates/interview-list.html',
-  styleUrls: ['app/styles/interview-list.css'],
+  templateUrl: 'interview-list.html',
+  styleUrls: ['interview-list.css'],
   directives: [ MD_TOOLBAR_DIRECTIVES, MD_INPUT_DIRECTIVES, MATERIAL_DIRECTIVES ],
   providers: [ OVERLAY_PROVIDERS, MATERIAL_PROVIDERS]
 })

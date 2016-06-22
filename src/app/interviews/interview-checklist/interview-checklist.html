@@ -6,18 +6,18 @@
     <md-list-item class="md-2-line">
       <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">person</i>
       <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
-        <h3>{{selectedInterview.pledge}}</h3>
-        <p>Interviewer</p>
+        <h3>Interviewer</h3>
+        <p>{{selectedInterview.pledge}}</p>
       </div>
     </md-list-item>
     <md-list-item class="md-2-line">
       <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">person_outline</i>
       <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
-        <h3>{{selectedInterview.brother}}</h3>
-        <p>Interviewee</p>
+        <h3>Interviewee</h3>
+        <p>{{selectedInterview.brother}}</p>
       </div>
     </md-list-item>
-    <md-list-item class="md-3-line md-long-text">
+    <md-list-item class="md-2-line">
       <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info</i>
       <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
         <h3>Summary</h3>
@@ -45,11 +45,13 @@
 			<md-data-table layout-fill>
         <thead>
         <tr>
-          <th class="md-text-cell">Brother/Pledge</th>
+          <th class="md-text-cell">Interviewer</th>
+          <th class="md-text-cell">Interviewee</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let interview of interviews" (click)="showDetail(interview);approve.show()">
+          <td class="md-text-cell">{{interview.pledge}}</td>
           <td class="md-text-cell">{{interview.brother}}</td>
         </tr>
         </tbody>

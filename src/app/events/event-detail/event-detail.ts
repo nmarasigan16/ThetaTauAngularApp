@@ -5,12 +5,13 @@ import { MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
-import { Event } from '../properties/event';
+import { Event } from '../../properties/event';
 
 @Component({
+	moduleId: module.id,
 	selector: 'event-detail',
-	templateUrl: './app/templates/event-detail.html',
-	styleUrls: ['./app/styles/event-detail.css'],
+	templateUrl: 'event-detail.html',
+	styleUrls: ['event-detail.css'],
 	directives: [ MATERIAL_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_INPUT_DIRECTIVES ],
 	providers: [ MATERIAL_PROVIDERS, OVERLAY_PROVIDERS]	
 })

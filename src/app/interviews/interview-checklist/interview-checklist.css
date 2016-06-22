@@ -1,0 +1,22 @@
+md-dialog{
+	min-width: 66%;
+}
+.wrapper{
+	height: 100%
+}
+md-input{
+	width:100%;
+}
+textarea{
+	width: 100%;
+	min-height: 100px;
+}
+md-card{
+	margin-right: 60px;
+	margin-left: 60px;
+}
+button{
+	margin-right: 15px;
+	background-color: #8B0000 ;
+	color: #FFFFFF;
+}
