@@ -1,0 +1,12 @@
+md-card {
+	min-width: 66%;
+}
+button {
+	background-color: #8B0000 ;
+	color: #FFFFFF;
+}
+.add{
+	position:relative;
+	right:10px;
+	bottom:-5px;
+}

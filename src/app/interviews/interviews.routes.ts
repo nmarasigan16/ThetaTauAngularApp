@@ -5,6 +5,6 @@ import { InterviewChecklistComponent } from './interview-checklist';
 
 export const InterviewRoutes: RouterConfig = [
 	{ path: 'interviews', component: InterviewListComponent },
-	{ path: 'interview/:id', component: InterviewDetailComponent },
-	{ path: 'check', component: InterviewChecklistComponent }
+	{ path: 'interviews/:id', component: InterviewDetailComponent },
+	{ path: 'interviews/check', component: InterviewChecklistComponent }
 ]

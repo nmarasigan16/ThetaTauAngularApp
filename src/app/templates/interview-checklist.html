@@ -1,0 +1,59 @@
+<md-dialog #approve (onClose)="approveClose($event)">
+  <md-dialog-title>Approve an interview</md-dialog-title>
+  <!-- List content -->
+  <md-list>
+    <!-- interviewer -->
+    <md-list-item class="md-2-line">
+      <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">person</i>
+      <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+        <h3>{{selectedInterview.pledge}}</h3>
+        <p>Interviewer</p>
+      </div>
+    </md-list-item>
+    <md-list-item class="md-2-line">
+      <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">person_outline</i>
+      <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+        <h3>{{selectedInterview.brother}}</h3>
+        <p>Interviewee</p>
+      </div>
+    </md-list-item>
+    <md-list-item class="md-3-line md-long-text">
+      <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info</i>
+      <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+        <h3>Summary</h3>
+        <p>{{selectedInterview.description}}</p>
+      </div>
+    </md-list-item>
+  </md-list>
+  <md-dialog-actions>
+      <button md-button (click)="approve.close(1)">
+      	<span>Approve</span>
+      </button>
+      <button md-button (click)="approve.close(0)">
+      	<span>Deny</span>
+      </button>
+  </md-dialog-actions>
+</md-dialog>
+
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Interviews</span>
+			<span flex></span>
+		</md-toolbar>
+		<md-card-content>
+			<md-data-table layout-fill>
+        <thead>
+        <tr>
+          <th class="md-text-cell">Brother/Pledge</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let interview of interviews" (click)="showDetail(interview);approve.show()">
+          <td class="md-text-cell">{{interview.brother}}</td>
+        </tr>
+        </tbody>
+      </md-data-table>
+		</md-card-content>
+	</md-card>
+</div>

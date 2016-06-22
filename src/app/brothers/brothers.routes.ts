@@ -1,8 +1,16 @@
 import { RouterConfig } from '@angular/router';
-import { BrotherListComponent } from './brother-list';
-import { BrotherDetailComponent } from './brother-detail';
+import { BrotherComponent } from './brother.component';
+import { BrotherListComponent } from './brother-list/index';
+import { BrotherDetailComponent } from './brother-detail/index';
 
 export const BrotherRoutes: RouterConfig = [
-	{ path: '/brothers', component: BrotherListComponent },
-	{ path: '/brothers/:id', component: BrotherDetailComponent}
-]
+	{
+		path: 'brothers',
+		component: BrotherComponent,
+		children: [
+			{ path: '/', component: BrotherListComponent, index: true },
+			{ path: '/:id', component: BrotherDetailComponent }
+		]
+	}
+];
+	
