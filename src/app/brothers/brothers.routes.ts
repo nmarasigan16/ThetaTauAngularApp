@@ -8,8 +8,8 @@ export const BrotherRoutes: RouterConfig = [
 		path: 'brothers',
 		component: BrotherComponent,
 		children: [
-			{ path: '/', component: BrotherListComponent, index: true },
-			{ path: '/:id', component: BrotherDetailComponent }
+			{ path: '', component: BrotherListComponent, terminal: true },
+			{ path: ':id', component: BrotherDetailComponent }
 		]
 	}
 ];

@@ -9,7 +9,7 @@ export const InterviewRoutes: RouterConfig = [
 		path: 'interviews', 
 		component: InterviewComponent,
 		children: [
-			{ path: '', component: InterviewListComponent, index: true },
+			{ path: '', component: InterviewListComponent, terminal: true },
 			{ path: 'detail/:id', component: InterviewDetailComponent },
 			{ path: 'check', component: InterviewChecklistComponent }
 		]

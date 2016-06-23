@@ -6,8 +6,8 @@ import { EventRoutes } from './events/event.routes';
 import { InterviewRoutes } from './interviews/interviews.routes'; 
 
 export const routes: RouterConfig = [
-	{ path: '/login', component: LoginComponent },
-	{ path: '/attendance', component: AttendanceComponent},
+	{ path: 'login', component: LoginComponent, terminal: true },
+	{ path: 'attendance', component: AttendanceComponent},
 	...BrotherRoutes,
 	...EventRoutes,
 	...InterviewRoutes,

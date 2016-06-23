@@ -8,7 +8,7 @@ export const EventRoutes: RouterConfig = [
 		path: 'events',
 		component: EventComponent,
 		children: [
-			{ path: '', component: EventListComponent, index: true },
+			{ path: '', component: EventListComponent, terminal: true },
 			{ path: ':id', component: EventDetailComponent }
 		]
 	}
