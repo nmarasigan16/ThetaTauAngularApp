@@ -18,7 +18,7 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       '@angular2-material/**/*',
       'ng2-material/**/*',
-      '@angular/router-deprecated'
+      '@angular/forms'
     ]
   });
 };
