@@ -17,3 +17,6 @@ button{
 	background-color: #8B0000 ;
 	color: #FFFFFF;
 }
+select{
+	margin-bottom: 10px;
+}

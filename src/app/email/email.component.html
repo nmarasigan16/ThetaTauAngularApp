@@ -1,0 +1,20 @@
+<div class="wrapper" layout="row" layout-align="center center">
+	<md-card>
+		<md-toolbar class="primary">Email
+		</md-toolbar>
+		<md-card-content>
+			<form>
+				<select #users (change)="onChange(users.value)">
+					<option *ngFor="let set of sets">{{set}}</option>E
+				</select>
+				<md-input placeholder="Subject"></md-input>
+				<textarea placeholder="Message"></textarea>
+			</form>
+		</md-card-content>
+		<md-card-actions layout="row" layout-align="end center">
+			<button md-button class="md-icon-button">
+				<i class="material-icons">send</i>
+			</button>
+		</md-card-actions>
+	</md-card>
+</div>

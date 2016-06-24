@@ -1,8 +1,12 @@
-<md-dialog #add (onClose)="addClose($event)">
+<md-dialog #add>
   <md-dialog-title>Add an interview</md-dialog-title>
   <!-- TODO add validation here -->
   <form>
   	<md-input #in placeholder="Brother/Pledge who was interviewed" type="text"></md-input>
+    Type:
+    <select #itype>
+      <option *ngFor="let itype of interview_types">{{itype | type}}</option>
+    </select>
   	<textarea #desc placeholder="Interview summary"></textarea>
   </form>
   <span flex></span>
@@ -10,7 +14,7 @@
       <button md-button (click)="add.close(0)">
         <span>Cancel</span>
       </button>
-      <button md-button submit (click)="add.close(in.value + '`' + desc.value)">
+      <button md-button submit (click)="addInterview(in.value, itype.value, desc.value);add.close()">
       	<span>Add</span>
       </button>
   </md-dialog-actions>

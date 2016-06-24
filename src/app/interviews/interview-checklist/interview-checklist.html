@@ -18,6 +18,13 @@
       </div>
     </md-list-item>
     <md-list-item class="md-2-line">
+      <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info_outline</i>
+      <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+        <h3>Type</h3>
+        <p>{{selectedInterview.type | type}}</p>
+      </div>
+    </md-list-item>
+    <md-list-item class="md-2-line">
       <i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info</i>
       <div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
         <h3>Summary</h3>
@@ -26,11 +33,11 @@
     </md-list-item>
   </md-list>
   <md-dialog-actions>
-      <button md-button (click)="approve.close(1)">
-      	<span>Approve</span>
-      </button>
-      <button md-button (click)="approve.close(0)">
+      <button md-raised-button (click)="approve.close(0)">
       	<span>Deny</span>
+      </button>
+      <button submit md-raised-button (click)="approve.close(1)">
+        <span>Approve</span>
       </button>
   </md-dialog-actions>
 </md-dialog>
