@@ -24,9 +24,9 @@
 				<tbody>
 				<tr *ngFor="let event of events | filter: type | search: term" (click)="gotoDetail(event.id)">
 					<td class="md-text-cell">{{event.name}}</td>
-					<td class="md-text-cell">{{event.date | date: "large"}}</td>
+					<td class="md-text-cell">{{event.date | date}}</td>
 					<td class="md-text-cell">{{event.location}}</td>
-					<td class="md-text-cell">{{event.type}}</td>
+					<td class="md-text-cell">{{event.type | full}}</td>
 				</tr>
 				</tbody>
 			</md-data-table>

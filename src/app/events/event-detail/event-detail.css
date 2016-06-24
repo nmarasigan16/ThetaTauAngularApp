@@ -1,7 +1,7 @@
 md-card {
 	min-width: 66%;
 }
-button {
+button[md-fab] {
 	background-color: #8B0000 ;
 	color: #FFFFFF;
 }
@@ -9,4 +9,8 @@ button {
 	position:relative;
 	right:10px;
 	bottom:-5px;
+}
+button[submit]{
+	background-color: #8B0000 ;
+	color: #FFCC33;
 }

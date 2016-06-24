@@ -7,11 +7,11 @@
   </form>
   <span flex></span>
   <md-dialog-actions>
-      <button md-button (click)="add.close(in.value + '`' + desc.value)">
-      	<span>Add</span>
-      </button>
       <button md-button (click)="add.close(0)">
-      	<span>Cancel</span>
+        <span>Cancel</span>
+      </button>
+      <button md-button submit (click)="add.close(in.value + '`' + desc.value)">
+      	<span>Add</span>
       </button>
   </md-dialog-actions>
 </md-dialog>

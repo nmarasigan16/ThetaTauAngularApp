@@ -1,0 +1,83 @@
+<!-- TODO add a dialog to confirm deletion and to edit password -->
+
+
+<div style="height:100%;" layout="column" layout-align="start center">
+	<md-card style="width:33%; margin-bottom:20px;">
+		<md-toolbar class="primary" style="position:relative;">
+			<button md-button class="md-icon-button" style="color: #FFCC33;" (click)="goBack()">
+				<i class="material-icons">arrow_back</i>
+			</button>
+			Meeting
+		</md-toolbar>
+		<md-card-content>
+			<md-list>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">event</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Date</h3>
+						<p>{{meeting.date | date}}</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Type</h3>
+						<p>{{meeting.mtype | type}}</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">vpn_key</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Password</h3>
+						<p>{{meeting.password}}</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-card-content>
+		<md-card-actions layout="row" layout-align="end center" style="height:0px;">
+			<button md-fab layout-align="end center">
+				<i md-icon>delete</i>
+			</button>
+			<button md-fab layout-align="end center">
+				<i md-icon>create</i>
+			</button>
+		</md-card-actions>
+	</md-card>
+
+	<md-card>
+		<md-toolbar>
+		Excuses
+		</md-toolbar>
+     </md-card>
+
+     <div *ngIf="excuses"  layout="column" layout-align="start center">
+     	<md-card *ngFor="let excuse of excuses">
+			<md-card-content>
+				<md-list>
+					<md-list-item class="md-2-line">
+						<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">face</i>
+						<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+							<h3>Name</h3>
+							<p>{{excuse.name}}</p>
+						</div>
+					</md-list-item>
+					<md-list-item class="md-2-line">
+						<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info_outline</i>
+						<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+							<h3>Excuse</h3>
+							<p>{{excuse.excuse}}</p>
+						</div>
+					</md-list-item>
+				</md-list>
+			</md-card-content>
+			<md-card-actions layout="row" layout-align="end center">
+				<button md-raised-button>
+				Deny
+				</button>
+				<button md-raised-button submit>
+				Accept
+				</button>
+			</md-card-actions>
+		</md-card>
+     </div>
+</div>

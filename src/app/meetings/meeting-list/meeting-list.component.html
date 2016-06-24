@@ -1,0 +1,30 @@
+<div layout="column" layout-align="stretch stretch">
+	<md-card>
+		<md-toolbar breakaction="show">
+			<span>Meetings</span>
+			<span flex></span>
+      <select #filter (change)="filter_type = filter.value">
+        <option *ngFor="let meeting_type of meeting_types">{{meeting_type | type}}</option>
+      </select>
+      <button md-fab layout-align="end center" class="md-fab" aria-label="add event" (click)="gotoCreate()">
+        <i md-icon>add</i>
+      </button>
+		</md-toolbar>
+		<md-card-content>
+			<md-data-table layout-fill>
+        <thead>
+        <tr>
+          <th class="md-text-cell">Date</th>
+          <th class="md-text-cell">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let meeting of meetings | filterBy:filter_type" (click)="gotoDetail(meeting.id)">
+          <td class="md-text-cell">{{meeting.date | date}}</td>
+          <td class="md-text-cell">{{meeting.mtype | type}}</td>
+        </tr>
+        </tbody>
+      </md-data-table>
+		</md-card-content>
+	</md-card>
+</div>

@@ -8,4 +8,9 @@ if (environment.production) {
   enableProdMode();
 }
 
-bootstrap(AppComponent, [APP_ROUTER_PROVIDERS]);
+bootstrap(AppComponent, [
+	APP_ROUTER_PROVIDERS,
+	disableDeprecatedForms(),
+	provideForms()
+	])
+	 .catch((err: any) => console.error(err));

@@ -11,6 +11,14 @@
 :host /deep/ button[md-fab]:hover{
 	background-color: #FFCC33 !important;
 }
+:host /deep/ button[md-fab]{
+	background-color: #8B0000 ;
+}
+
+:host /deep/ button[submit]{
+	background-color: #8B0000 ;
+	color: #FFCC33;
+}
 
 md-sidenav{
 	min-width: 15%;

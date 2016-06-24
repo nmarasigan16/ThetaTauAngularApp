@@ -1,5 +1,3 @@
-/** NOTE THAT THIS BREAKS ON REFRESH AT THE MOMENT.  FIX MAY COME WHEN SERVICE IS IMPLEMENTED **/
-
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';

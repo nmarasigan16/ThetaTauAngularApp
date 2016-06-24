@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPipe } from '../pipes/search.pipe';
 import { TypePipe } from '../pipes/type.pipe';
+import { FullPipe } from '../pipes/full.pipe';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
@@ -10,7 +11,7 @@ import { Event } from '../../properties/event'
 @Component({
 	moduleId: module.id,
 	selector:'event-list',
-	pipes:[ SearchPipe, TypePipe ],
+	pipes:[ SearchPipe, TypePipe, FullPipe ],
 	directives: [MATERIAL_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_TOOLBAR_DIRECTIVES ],
 	templateUrl: 'event-list.html',
 	styleUrls: ['event-list.css']
