@@ -1,0 +1,20 @@
+<div style="height:100%;" layout="column" layout-align="center center">
+	<!--dialog-->
+	<md-dialog #confirm (onClose)="initiateClose($event)">
+      <md-dialog-title>Are you sure you want to initiate all the pledges for your chapter?
+      </md-dialog-title>
+      <span flex></span>
+      <md-dialog-actions>
+  	      <button md-button (click)="confirm.close(0)">
+	      	<span>Cancel</span>
+	      </button>
+	      <button submit md-button (click)="confirm.close(1)">
+	      	<span>Initiate</span>
+	      </button>
+      </md-dialog-actions>
+    </md-dialog>
+
+    <button md-fab class="md-fab" (click)="confirm.show()">
+    	<i md-icon>pregnant_woman</i>
+    </button>
+</div>
