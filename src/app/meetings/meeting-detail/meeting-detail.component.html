@@ -1,7 +1,48 @@
 <!-- TODO add a dialog to confirm deletion and to edit password -->
 
 
-<div style="height:100%;" layout="column" layout-align="start center">
+<div layout="column" layout-align="start center">
+	<md-dialog #delete (onClose)="deleteClose($event)">
+      <md-dialog-title>Are you sure you want to delete this meeting?
+      </md-dialog-title>
+      <span flex></span>
+      <md-dialog-actions>
+  	      <button md-raised-button (click)="delete.close(0)">
+	      	<span>Cancel</span>
+	      </button>
+	      <button submit md-raised-button submit (click)="delete.close(1)">
+	      	<span>Delete</span>
+	      </button>
+      </md-dialog-actions>
+    </md-dialog>
+    <md-dialog #take (onClose)="takeClose($event)">
+      <md-dialog-title>Are you sure you want to take attendance for this meeting?
+      </md-dialog-title>
+      <span flex></span>
+      <md-dialog-actions>
+  	      <button md-raised-button (click)="take.close(0)">
+	      	<span>Cancel</span>
+	      </button>
+	      <button submit md-raised-button submit (click)="take.close(1)">
+	      	<span>Take Attendance</span>
+	      </button>
+      </md-dialog-actions>
+    </md-dialog>
+    <md-dialog #edit (onClose)="editClose($event)">
+      <md-dialog-title>Do you want to change the password?
+      <br>
+      <md-input #edit_in placeholder="New Password"></md-input>
+      </md-dialog-title>
+      <span flex></span>
+      <md-dialog-actions>
+  	      <button md-raised-button (click)="edit.close(undefined)">
+	      	<span>Cancel</span>
+	      </button>
+	      <button submit md-raised-button (click)="edit.close(edit_in.value)">
+	      	<span>Submit</span>
+	      </button>
+      </md-dialog-actions>
+    </md-dialog>
 	<md-card style="width:33%; margin-bottom:20px;">
 		<md-toolbar class="primary" style="position:relative;">
 			<button md-button class="md-icon-button" style="color: #FFCC33;" (click)="goBack()">
@@ -35,49 +76,52 @@
 			</md-list>
 		</md-card-content>
 		<md-card-actions layout="row" layout-align="end center" style="height:0px;">
-			<button md-fab layout-align="end center">
+			<button md-fab layout-align="end center" (click)="delete.show()">
 				<i md-icon>delete</i>
 			</button>
-			<button md-fab layout-align="end center">
+			<button md-fab layout-align="end center" (click)="take.show()">
+				<i md-icon>poll</i>
+			</button>
+			<button md-fab layout-align="end center" (click)="edit.show()">
 				<i md-icon>create</i>
 			</button>
 		</md-card-actions>
 	</md-card>
-
+</div>
+<div *ngIf="excuses"  layout="column" layout-align="start center">
 	<md-card>
 		<md-toolbar>
 		Excuses
 		</md-toolbar>
      </md-card>
 
-     <div *ngIf="excuses"  layout="column" layout-align="start center">
-     	<md-card *ngFor="let excuse of excuses">
-			<md-card-content>
-				<md-list>
-					<md-list-item class="md-2-line">
-						<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">face</i>
-						<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
-							<h3>Name</h3>
-							<p>{{excuse.name}}</p>
-						</div>
-					</md-list-item>
-					<md-list-item class="md-2-line">
-						<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info_outline</i>
-						<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
-							<h3>Excuse</h3>
-							<p>{{excuse.excuse}}</p>
-						</div>
-					</md-list-item>
-				</md-list>
-			</md-card-content>
-			<md-card-actions layout="row" layout-align="end center">
-				<button md-raised-button>
-				Deny
-				</button>
-				<button md-raised-button submit>
-				Accept
-				</button>
-			</md-card-actions>
-		</md-card>
-     </div>
+
+ 	<md-card *ngFor="let excuse of excuses">
+		<md-card-content>
+			<md-list>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">face</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Name</h3>
+						<p>{{excuse.name}}</p>
+					</div>
+				</md-list-item>
+				<md-list-item class="md-2-line">
+					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">info_outline</i>
+					<div class="md-list-item-text" [ngClass]="{'md-offset': index == 2 }">
+						<h3>Excuse</h3>
+						<p>{{excuse.excuse}}</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</md-card-content>
+		<md-card-actions layout="row" layout-align="end center">
+			<button md-raised-button>
+			Deny
+			</button>
+			<button md-raised-button submit>
+			Accept
+			</button>
+		</md-card-actions>
+	</md-card>
 </div>

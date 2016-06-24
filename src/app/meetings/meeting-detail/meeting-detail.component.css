@@ -4,3 +4,7 @@ md-card{
 div{
 	width:100%;
 }
+button[submit]{
+	background-color: #8B0000 ;
+	color: #FFCC33;
+}

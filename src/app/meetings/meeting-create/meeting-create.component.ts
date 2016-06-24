@@ -17,14 +17,18 @@ import { Meeting } from '../../properties/meeting';
 export class MeetingCreateComponent implements OnInit {
     public meeting_types = MEETING_TYPES;
 
-  constructor() {}
+  constructor(private router:Router) {}
 
   ngOnInit() {
+  }
+  goBack(){
+    this.router.navigate(['/meetings']);
   }
 
 }
 
 var MEETING_TYPES: any[] = [
+    "None",
     "PM",
     "GM",
     "VO",

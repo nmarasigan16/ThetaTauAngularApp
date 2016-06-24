@@ -7,7 +7,7 @@ import { InterviewRoutes } from './interviews/interviews.routes';
 import { MeetingRoutes } from './meetings/meeting.routes';
 
 export const routes: RouterConfig = [
-	{ path: 'login', component: LoginComponent },
+	{ path: 'login', component: LoginComponent, terminal: true },
 	{ path: 'attendance', component: AttendanceComponent},
 	...BrotherRoutes,
 	...EventRoutes,
