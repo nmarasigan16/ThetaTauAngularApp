@@ -10,14 +10,16 @@ const map: any = {
   '@angular2-material': 'vendor/@angular2-material',
   'ng2-material': 'vendor/ng2-material',
   '@angular/router-deprecated': 'vendor/@angular/router-deprecated',
-  '@angular/forms': 'vendor/@angular/forms'
+  '@angular/forms': 'vendor/@angular/forms',
+  '@angular/http': 'vendor/@angular/http'
 };
 
 /** User packages configuration. */
 const packages: any = {
   'ng2-material': { defaultExtension: 'js', main: 'index.js' },
   '@angular/router-deprecated': { defaultExtension: 'js', main: 'index.js' },
-  '@angular/forms': {defaultExtension: 'js', main: 'index.js'}
+  '@angular/forms': {defaultExtension: 'js', main: 'index.js'},
+  '@angular/http': {defaultExtension: 'js', main: 'index.js'}
 };
 
 const materialPkgs: string[] = [

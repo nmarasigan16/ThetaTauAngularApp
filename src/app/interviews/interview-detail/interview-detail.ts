@@ -13,7 +13,7 @@ import { Interview } from '../../properties/interview'
 })
 export class InterviewDetailComponent implements OnInit {
 
-  interview: Interview = { "id": 1, "pledge_id": 1, "pledge": "John", "brother": "Nathan", "description": "Too cool man" };
+  interview: Interview = { "id": 1, "pledge_id": 1, "pledge": "John", "brother": "Nathan", "type": "B", "description": "Too cool man" };
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 

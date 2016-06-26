@@ -18,7 +18,8 @@ module.exports = function(defaults) {
       '@angular/**/*.+(js|js.map)',
       '@angular2-material/**/*',
       'ng2-material/**/*',
-      '@angular/forms'
+      '@angular/forms',
+      '@angular/http'
     ]
   });
 };
