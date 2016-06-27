@@ -16,7 +16,7 @@
     <md-sidenav #left class="app-menu md-sidenav-side" mode="over">
       <!-- List of things for sidenav -->
       <md-list>
-        <md-list-item (click)="left.toggle()" class="md-2-line" *ngFor="let action of actions" [class.selected]="action===selectedAction" (click)="onSelect(action)">
+        <md-list-item (click)="left.toggle()" class="md-2-line" *ngFor="let action of actions" [class.selected]="action===selectedAction" (click)="onSelect(action)" [routerLink]="[action.link]">
           <div class="md-list-item-text">
             <h3>{{ action.name }}</h3>
             <p>{{ action.description }}</p>
