@@ -4,12 +4,12 @@
 		</md-toolbar>
 		<md-card-content>
 			<form>
-				<md-input placeholder="Username"></md-input>
-				<md-input placeholder="Password"></md-input>
+				<md-input #u placeholder="Username"></md-input>
+				<md-input #p placeholder="Password"></md-input>
 			</form>
 		</md-card-content>
 		<md-card-actions layout="row" layout-align="end center">
-			<button md-button>Login</button>
+			<button md-button (click)="OnSubmit(u.value, p.value)">Login</button>
 		</md-card-actions>
 	</md-card>
 </div>

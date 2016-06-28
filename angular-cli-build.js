@@ -19,7 +19,8 @@ module.exports = function(defaults) {
       '@angular2-material/**/*',
       'ng2-material/**/*',
       '@angular/forms',
-      '@angular/http'
+      '@angular/http',
+      'angular2-cookie'
     ]
   });
 };

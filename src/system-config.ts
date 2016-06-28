@@ -11,7 +11,8 @@ const map: any = {
   'ng2-material': 'vendor/ng2-material',
   '@angular/router-deprecated': 'vendor/@angular/router-deprecated',
   '@angular/forms': 'vendor/@angular/forms',
-  '@angular/http': 'vendor/@angular/http'
+  '@angular/http': 'vendor/@angular/http',
+  'angular2-cookie': 'vendor/angular2-cookie'
 };
 
 /** User packages configuration. */
@@ -19,7 +20,8 @@ const packages: any = {
   'ng2-material': { defaultExtension: 'js', main: 'index.js' },
   '@angular/router-deprecated': { defaultExtension: 'js', main: 'index.js' },
   '@angular/forms': {defaultExtension: 'js', main: 'index.js'},
-  '@angular/http': {defaultExtension: 'js', main: 'index.js'}
+  '@angular/http': {defaultExtension: 'js', main: 'index.js'},
+  'angular2-cookie': {defaultExtension: 'js', main: 'index.js'}
 };
 
 const materialPkgs: string[] = [

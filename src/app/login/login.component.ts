@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar'
+import { AuthService } from '../authentication.service';
 
 @Component({
   moduleId: module.id,
@@ -12,7 +13,7 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar'
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {}
+  constructor(private service: AuthService) {}
 
   ngOnInit() {
   }
