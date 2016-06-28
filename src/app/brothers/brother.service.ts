@@ -5,6 +5,8 @@ import { Brother } from '../properties/props';
 import { Observable } from 'rxjs/Observable'
 
 
+/** TODO Implement this with authentication headers, or make a service that gives us the headers **/
+
 @Injectable()
 export class BrotherService {
 
