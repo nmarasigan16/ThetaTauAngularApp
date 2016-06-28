@@ -23,6 +23,24 @@
           </div>
         </md-list-item>
       </md-list>
+      <md-list *ngIf="isPledge">
+        <md-subheader class = "md-no-sticky">Pledge Actions</md-subheader>
+        <md-list-item (click)="left.toggle()" class="md-2-line" *ngFor="let action of pledge_actions" [class.selected]="action===selectedAction" (click)="onSelect(action)" [routerLink]="[action.link]">
+          <div class="md-list-item-text">
+            <h3>{{ action.name }}</h3>
+            <p>{{ action.description }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
+      <md-list *ngIf="isOfficer">
+        <md-subheader class = "md-no-sticky">Officer Functions</md-subheader>
+        <md-list-item (click)="left.toggle()" class="md-2-line" *ngFor="let action of officer_actions" [class.selected]="action===selectedAction" (click)="onSelect(action)" [routerLink]="[action.link]">
+          <div class="md-list-item-text">
+            <h3>{{ action.name }}</h3>
+            <p>{{ action.description }}</p>
+          </div>
+        </md-list-item>
+      </md-list>
     </md-sidenav>
     <md-content layout="column" class="backdrop">
           <router-outlet></router-outlet>

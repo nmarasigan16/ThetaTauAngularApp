@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPipe } from '../pipes/search-pipe';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { Brother } from '../../properties/brother'
+import { BrotherService } from '../brother.service';
 
 @Component({
 	moduleId: module.id,
@@ -12,14 +13,24 @@ import { Brother } from '../../properties/brother'
 	pipes:[ SearchPipe ],
 	directives: [MATERIAL_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_TOOLBAR_DIRECTIVES ],
 	templateUrl: 'brother-list.html',
-	styleUrls: ['brother-list.css']
-
+	styleUrls: ['brother-list.css'],
 })
-export class BrotherListComponent{
+export class BrotherListComponent implements OnInit{
 
-	public brothers = BROTHERS;
+	public brothers;
+	public errorMessage;
 
-	constructor(private router: Router){}
+	constructor(private router: Router, private service: BrotherService){}
+
+	ngOnInit(){
+		this.getBrothers();
+	}
+
+	getBrothers(){
+		this.service.getBrothers().subscribe(
+			brothers => this.brothers = brothers,
+			error => this.errorMessage = <any>error);
+	}
 
 	gotoDetail(id:number){
 		this.router.navigate(['/brothers', id]);
