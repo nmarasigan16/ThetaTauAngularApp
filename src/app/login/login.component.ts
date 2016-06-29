@@ -18,4 +18,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  OnSubmit(username: string, password: string){
+  	this.service.login(username, password);
+  }
+
 }

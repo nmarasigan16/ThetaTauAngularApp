@@ -20,7 +20,7 @@ const packages: any = {
   '@angular/router-deprecated': { defaultExtension: 'js', main: 'index.js' },
   '@angular/forms': {defaultExtension: 'js', main: 'index.js'},
   '@angular/http': {defaultExtension: 'js', main: 'index.js'},
-  'angular2-cookie': {defaultExtension: 'js', main: 'core.js', format: 'register'}
+  'angular2-cookie': {defaultExtension: 'js', main: 'core.js'}
 };
 
 const materialPkgs: string[] = [
