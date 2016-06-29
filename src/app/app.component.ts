@@ -6,6 +6,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Action } from './properties/action';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 import { AuthService } from './authentication.service';
+import { CookieService } from 'angular2-cookie/core';
 import './rxjs-operators';
 
 

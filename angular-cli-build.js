@@ -20,7 +20,7 @@ module.exports = function(defaults) {
       'ng2-material/**/*',
       '@angular/forms',
       '@angular/http',
-      'angular2-cookie'
+      'angular2-cookie/**/*.+(js|js.map)'
     ]
   });
 };
