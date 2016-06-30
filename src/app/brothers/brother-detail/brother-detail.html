@@ -1,4 +1,5 @@
-<div style="height:100%;" layout="column" layout-align="center center">
+<!-- theres an ngIf here because the component was loading too quickly and would load while brother was undefined -->
+<div style="height:100%;" layout="column" layout-align="center center" *ngIf="brother">
 	<md-card style="width:33%;">
 		<md-toolbar class="primary" style="position:relative;">
 			<button md-button class="md-icon-button" style="color: #FFCC33;" (click)="goBack()">

@@ -29,7 +29,8 @@ export class BrotherListComponent implements OnInit{
 	getBrothers(){
 		this.service.getBrothers().subscribe(
 			brothers => this.brothers = brothers,
-			error => this.errorMessage = <any>error);
+			error => this.errorMessage = <any>error,
+			() => console.log('got brothers'));
 	}
 
 	gotoDetail(id:number){

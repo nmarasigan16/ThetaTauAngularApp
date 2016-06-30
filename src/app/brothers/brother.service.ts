@@ -23,14 +23,13 @@ export class BrotherService {
 		           .map(this.extractData)
 	               .catch(this.handleError);
 	}
-	getBrother(id: number): Observable<Brother>{
+	getBrother(id): Observable<Brother>{
 		let headers = new Headers();
 		this.urls.appendHeaders(headers);
 		return this.http.get(
 			this.BaseUrl + this.brothers_url + this.details_url + id + '/',{headers: headers})
 			.map(this.extractData)
 			.catch(this.handleError);
-
 	}
 	private handleError (error: any) {
 	  // In a real world app, we might use a remote logging infrastructure
@@ -44,6 +43,5 @@ export class BrotherService {
 		let body = res.json()
 		return body || {};
 	}
-
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -12,17 +12,33 @@ import { BrotherService } from '../brother.service'
 	styleUrls: ['brother-detail.css'],
 	directives: [ MATERIAL_DIRECTIVES, MD_TOOLBAR_DIRECTIVES ]	
 })
-export class BrotherDetailComponent{
+export class BrotherDetailComponent implements OnInit{
 
-	constructor(private router: Router, private service: BrotherService, private route: ActivatedRoute){
-
+	constructor( private route: ActivatedRoute, private router: Router, private service: BrotherService){
 	}
-	sub: any;
-	brother: Brother;
+	sub:any;
+	id:number;
+	brother;
 
 	ngOnInit(){
-		this.sub
+		this.sub = this.route.params.subscribe(
+			params => {
+				let id = params['id'];
+				this.getBrother(id)
+			},
+			error => console.error(error),
+			() => console.log("subscribed to route params"));
 	}
+
+	getBrother(id){
+		this.service.getBrother(id).subscribe(
+			brother => {
+				this.brother = brother
+				console.log("assigned brother");
+			});
+	}
+
+
 
 
 	goBack(){
