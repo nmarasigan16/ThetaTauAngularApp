@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar'
-import { AuthService } from '../authentication.service';
+import { AuthService } from '../services/authentication.service';
 
 @Component({
   moduleId: module.id,
@@ -13,13 +13,19 @@ import { AuthService } from '../authentication.service';
 })
 export class LoginComponent implements OnInit {
 
+  errorMessage: string;
+
   constructor(private service: AuthService) {}
 
   ngOnInit() {
   }
 
   OnSubmit(username: string, password: string){
-  	this.service.login(username, password);
+  	this.service.login(username, password)
+    .subscribe(
+      result => console.log(result),
+      error => console.log(error)
+      );
   }
 
 }

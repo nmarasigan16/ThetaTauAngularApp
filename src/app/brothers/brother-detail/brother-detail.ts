@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { Brother } from '../../properties/brother';
+import { BrotherService } from '../brother.service'
 
 @Component({
 	moduleId: module.id,
@@ -13,11 +14,16 @@ import { Brother } from '../../properties/brother';
 })
 export class BrotherDetailComponent{
 
-	constructor(private router: Router){
+	constructor(private router: Router, private service: BrotherService, private route: ActivatedRoute){
 
 	}
+	sub: any;
+	brother: Brother;
 
-	brother:Brother = {"id": 1, "name": "John", "email": "asdas@asdasd", "phone_number": "123456789", "city": "Champaign"}
+	ngOnInit(){
+		this.sub
+	}
+
 
 	goBack(){
 		let link = ['/brothers'];

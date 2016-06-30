@@ -4,8 +4,7 @@ import { AppComponent, environment } from './app/';
 import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { HTTP_PROVIDERS, RequestOptions } from '@angular/http';
-import { ExRequestOptions } from './app/request_options.service';
-import { GlobalUrlService } from './app/url.service';
+import { ExRequestOptions } from './app/services/request_options.service';
 
 if (environment.production) {
   enableProdMode();
@@ -16,7 +15,6 @@ bootstrap(AppComponent, [
 	disableDeprecatedForms(),
 	provideForms(),
 	HTTP_PROVIDERS,
-	provide( RequestOptions, {useClass: ExRequestOptions}),
-	GlobalUrlService
+	provide( RequestOptions, {useClass: ExRequestOptions})
 	])
 	 .catch((err: any) => console.error(err));

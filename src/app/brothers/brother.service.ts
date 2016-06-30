@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { GlobalUrlService } from '../url.service';
+import { Http, Response, Headers } from '@angular/http';
+import { UrlService } from '../services/url.service';
 import { Brother } from '../properties/props';
 import { Observable } from 'rxjs/Observable'
 
@@ -10,16 +10,27 @@ import { Observable } from 'rxjs/Observable'
 @Injectable()
 export class BrotherService {
 
-  constructor(private urls: GlobalUrlService, private http: Http) {}
+  constructor(private urls: UrlService, private http: Http) {}
 
   private BaseUrl = this.urls.getAPIUrl();
   private brothers_url = '/users/';
   private details_url = 'detail/';
 
 	getBrothers(): Observable<Brother[]>{
-		return this.http.get(this.BaseUrl + this.brothers_url)
+		let headers = new Headers();
+		this.urls.appendHeaders(headers);
+		return this.http.get(this.BaseUrl + this.brothers_url, {headers: headers})
 		           .map(this.extractData)
 	               .catch(this.handleError);
+	}
+	getBrother(id: number): Observable<Brother>{
+		let headers = new Headers();
+		this.urls.appendHeaders(headers);
+		return this.http.get(
+			this.BaseUrl + this.brothers_url + this.details_url + id + '/',{headers: headers})
+			.map(this.extractData)
+			.catch(this.handleError);
+
 	}
 	private handleError (error: any) {
 	  // In a real world app, we might use a remote logging infrastructure

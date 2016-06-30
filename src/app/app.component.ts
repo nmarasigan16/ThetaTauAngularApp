@@ -5,7 +5,8 @@ import { MATERIAL_DIRECTIVES} from 'ng2-material';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import { Action } from './properties/action';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
-import { AuthService } from './authentication.service';
+import { AuthService } from './services/authentication.service';
+import { UrlService } from './services/url.service';
 import { CookieService } from 'angular2-cookie/core';
 import './rxjs-operators';
 
@@ -16,7 +17,7 @@ import './rxjs-operators';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   directives: [MD_TOOLBAR_DIRECTIVES, MATERIAL_DIRECTIVES, MD_SIDENAV_DIRECTIVES, ROUTER_DIRECTIVES],
-  providers: [ AuthService ]
+  providers: [ AuthService, CookieService, UrlService ]
 })
 
 export class AppComponent {

@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { GlobalUrlService } from './url.service';
+import { UrlService } from './url.service';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { CookieService } from 'angular2-cookie/core';
 
 @Injectable()
 export class AuthService{
-	constructor(private http: Http, private urls: GlobalUrlService){
+	constructor(private http: Http, private urls: UrlService, private cookie: CookieService){
 
 	}
 	private BaseUrl = this.urls.getAPIUrl();
-	private auth_url = '/rest-auth/';
+	private auth_url = this.BaseUrl + '/rest-auth/';
 
 	login(username:string, password: string){
 		let headers = new Headers();
@@ -22,6 +23,14 @@ export class AuthService{
 			{ headers }
 			)
 			.map(res => res.json())
+			.map((res) =>{
+				console.log(res);
+				if (res.key){
+					this.cookie.put('Token', res.key);
+					return true;
+				}
+				return false;
+			})
 			.catch(this.handleError);
 	}
 
