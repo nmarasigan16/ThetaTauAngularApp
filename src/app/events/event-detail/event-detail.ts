@@ -66,7 +66,8 @@ export class EventDetailComponent{
 	ngOnDestroy(){
 		this.route_sub.unsubscribe();
 		this.event_sub.unsubscribe();
-		this.add_sub.unsubscribe();
+		if(this.add_sub)
+			this.add_sub.unsubscribe();
 	}
 
 }
