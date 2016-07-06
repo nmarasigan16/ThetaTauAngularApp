@@ -35,8 +35,10 @@ export class AuthService{
 			.catch(this.handleError);
 	}
 
+
+
+
 	isLoggedIn(){
-		console.log(this.cookie.get('Token'));
 		return this.loggedIn;
 	}
 

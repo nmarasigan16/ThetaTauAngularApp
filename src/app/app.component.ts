@@ -2,11 +2,12 @@ import { Component, NgZone } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MATERIAL_DIRECTIVES} from 'ng2-material';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { ROUTER_DIRECTIVES, Router } from '@angular/router';
 import { Action } from './properties/action';
 import { APP_ROUTER_PROVIDERS } from './app.routes';
 import { AuthService } from './services/authentication.service';
 import { UrlService } from './services/url.service';
+import { UserService } from './services/user.service';
 import { CookieService } from 'angular2-cookie/core';
 import './rxjs-operators';
 
@@ -17,17 +18,18 @@ import './rxjs-operators';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
   directives: [MD_TOOLBAR_DIRECTIVES, MATERIAL_DIRECTIVES, MD_SIDENAV_DIRECTIVES, ROUTER_DIRECTIVES],
-  providers: [ AuthService, CookieService, UrlService ]
+  providers: [ AuthService, CookieService, UrlService, UserService ]
 })
 
 export class AppComponent {
   user: string;
-  constructor(zone: NgZone, private service: UrlService){
+  constructor(private service: UserService, private router: Router){
+    this.getUser()
   }
   getUser(){
     this.service.getUser()
       .subscribe(
-        user => this.user = user
+        user => this.isPledge = user.status == 'P'
         );
     this.service.getOfficer()
       .subscribe(
@@ -36,8 +38,13 @@ export class AppComponent {
 
   }
 
+  logout(){
+    this.service.logout();
+    this.router.navigate(['/login']);
+  }
+
   title = 'app works!';
-  isPledge: boolean = true;
+  isPledge: boolean = false;
   isOfficer: boolean = false;
   actions = ACTIONS;
   pledge_actions = PLEDGE_ACTIONS;
