@@ -30,8 +30,7 @@ export class BrotherListComponent implements OnInit{
 	getBrothers(){
 		this.subscription = this.service.getBrothers().subscribe(
 			brothers => this.brothers = brothers,
-			error => this.errorMessage = <any>error,
-			() => console.log('got brothers'));
+			error => this.errorMessage = <any>error);
 	}
 
 	gotoDetail(id:number){

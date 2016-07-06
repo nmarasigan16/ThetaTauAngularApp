@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPipe } from '../pipes/search.pipe';
 import { TypePipe } from '../pipes/type.pipe';
@@ -7,6 +7,7 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { Event } from '../../properties/event'
+import { EventService } from '../event.service';
 
 @Component({
 	moduleId: module.id,
@@ -17,15 +18,35 @@ import { Event } from '../../properties/event'
 	styleUrls: ['event-list.css']
 
 })
-export class EventListComponent{
+export class EventListComponent implements OnInit{
 
-	public types = TYPES;
-	public events = EVENTS;
+	types = TYPES;
+	events: any;
+	subscription: any;
+	errorMessage: string;
 
-	constructor(private router: Router){}
+	constructor(private router: Router, private service: EventService){}
+
+	ngOnInit(){
+		this.getEvents();
+	}
+
+	getEvents(){
+		this.subscription = this.service.getEvents()
+			.subscribe(
+				events => this.events = events,
+				error => this.errorMessage = error
+				);
+	}
 
 	gotoDetail(id:number){
 		this.router.navigate(['/events', id]);
+	}
+
+	ngOnDestroy(){
+		if(this.subscription){
+			this.subscription.unsubscribe();
+		}
 	}
 
 }
@@ -36,19 +57,4 @@ var TYPES: any[] = [
 	{"label": "Professional", "value":"PR"},
 	{ "label": "Brotherhood", "value": "BR" },
 	{ "label": "Philanthropy", "value": "PH" },
-]
-
-var EVENTS: Event[]=[
-	{"id": 1, "name": "Happy Hour", "date": new Date(9, 16, 2016), "location": "Regends", "about": "a", "type": "BR"},
-	{ "id": 2, "name": "Habitat for Humanity", "date": new Date(8,29,2016), "location": "Champaign Park", "about": "", "type": "PH" },
-	{ "id": 3, "name": "Tech Talk", "date": new Date(12, 9, 2016), "location": "EHall", "about": "a", "type": "PR" },
-	{ "id": 4, "name": "Happy Hour", "date": new Date(9, 16, 2016), "location": "Regends", "about": "a", "type": "BR" },
-	{ "id": 5, "name": "Habitat for Humanity", "date": new Date(8, 29, 2016), "location": "Champaign Park", "about": "a", "type": "PH" },
-	{ "id": 6, "name": "Tech Talk", "date": new Date(12, 9, 2016), "location": "EHall", "about": "a", "type": "PR" },
-	{ "id": 7, "name": "Happy Hour", "date": new Date(9, 16, 2016), "location": "Regends", "about": "a", "type": "BR" },
-	{ "id": 8, "name": "Habitat for Humanity", "date": new Date(8, 29, 2016), "location": "Champaign Park", "about": "a", "type": "PH" },
-	{ "id": 9, "name": "Tech Talk", "date": new Date(12, 9, 2016), "location": "EHall", "about": "a", "type": "PR" },
-	{ "id": 10, "name": "Happy Hour", "date": new Date(9, 16, 2016), "location": "Regends", "about": "a", "type": "BR" },
-	{ "id": 11, "name": "Habitat for Humanity", "date": new Date(8, 29, 2016), "location": "Champaign Park", "about": "a", "type": "PH" },
-	{ "id": 12, "name": "Tech Talk", "date": new Date(12, 9, 2016), "location": "EHall", "about": "a", "type": "PR" },
 ]

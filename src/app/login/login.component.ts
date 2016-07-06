@@ -4,6 +4,7 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar'
 import { AuthService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   moduleId: module.id,
@@ -17,21 +18,23 @@ export class LoginComponent implements OnInit {
   errorMessage: string;
   subscription: any;
 
-  constructor(private service: AuthService, private router: Router) {
-    let loggedIn = this.service.isLoggedIn();
+  constructor(private service: AuthService, private router: Router, private user: UserService) {
+  }
+
+  ngOnInit() {
+    let loggedIn = this.user.isLoggedIn();
     if(loggedIn){
       this.router.navigate(['/brothers'])
     }
   }
 
-  ngOnInit() {
-    
-  }
-
   OnSubmit(username: string, password: string){
   	this.subscription = this.service.login(username, password)
     .subscribe(
-      result => this.router.navigate(['/brothers']),
+      result => {
+        this.user.login();
+        this.router.navigate(['/brothers']);
+      },
       error => console.log(error)
       );
   }

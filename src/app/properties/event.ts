@@ -4,5 +4,5 @@ export class Event{
 	date: Date;
 	location: string;
 	about: string;
-	type: string;
+	etype: string;
 }

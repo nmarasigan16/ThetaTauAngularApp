@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MATERIAL_DIRECTIVES} from 'ng2-material';
@@ -22,14 +22,23 @@ import './rxjs-operators';
 })
 
 export class AppComponent {
+  //todo make a viewchild of dashboard, and class get user after it inits
   user: string;
   constructor(private service: UserService, private router: Router){
-    this.getUser()
   }
+  ngOnInit(){
+    this.loggedIn = this.service.isLoggedIn();
+    if(this.loggedIn){
+      this.getUser();
+    }
+  }
+
   getUser(){
     this.service.getUser()
       .subscribe(
-        user => this.isPledge = user.status == 'P'
+        user => {
+          this.isPledge = user.status == 'P';
+        }
         );
     this.service.getOfficer()
       .subscribe(
@@ -44,6 +53,7 @@ export class AppComponent {
   }
 
   title = 'app works!';
+  loggedIn: boolean;
   isPledge: boolean = false;
   isOfficer: boolean = false;
   actions = ACTIONS;

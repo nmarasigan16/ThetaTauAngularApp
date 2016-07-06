@@ -6,10 +6,10 @@ import { UrlService } from './url.service';
 
 @Injectable()
 export class UserService{
+	private loggedIn = false;
 	constructor(private url: UrlService, private cookie: CookieService, private http: Http){
+		this.loggedIn = !!this.cookie.get('Token')
 	}
-	private status: Observable<string>;
-	private officer: Observable<boolean>;
 
 	getUser(){
 		let url = this.url.getAPIUrl() + '/user/status/';
@@ -27,9 +27,18 @@ export class UserService{
 	               .catch(this.handleError);
 	}
 
+	isLoggedIn(){
+		return this.loggedIn;
+	}
+
+	login(){
+		this.loggedIn = true;
+	}
+
 	//logout is placed in here so that more services don't need to be injected into the main appcomponent
 	logout(){
 		this.cookie.remove('Token');
+		this.loggedIn = false;
 	}
 	private handleError (error: any) {
 	  // In a real world app, we might use a remote logging infrastructure

@@ -3,9 +3,9 @@
 		<md-toolbar breakaction="show">
 			<span>Events</span>
 			<span flex></span>
-			<button md-raised-button *ngFor="let t of types" (click)="type=t.value">
-			{{t.label}}
-			</button>
+			<select #moo (change)="type=moo.value">
+				<option *ngFor="let t of types">{{t.label}}</option>
+			</select>
 			<md-input type="search" #input (keyup)="term=input.value" placeholder="Search"></md-input>
 			<button md-button class="md-icon-button" >
 				<i class="material-icons">search</i>
@@ -26,7 +26,7 @@
 					<td class="md-text-cell">{{event.name}}</td>
 					<td class="md-text-cell">{{event.date | date}}</td>
 					<td class="md-text-cell">{{event.location}}</td>
-					<td class="md-text-cell">{{event.type | full}}</td>
+					<td class="md-text-cell">{{event.etype | full}}</td>
 				</tr>
 				</tbody>
 			</md-data-table>

@@ -27,15 +27,13 @@ export class BrotherDetailComponent implements OnInit{
 				let id = params['id'];
 				this.getBrother(id)
 			},
-			error => console.error(error),
-			() => console.log("subscribed to route params"));
+			error => console.error(error));
 	}
 
 	getBrother(id){
 		this.user_sub = this.service.getBrother(id).subscribe(
 			brother => {
-				this.brother = brother
-				console.log("assigned brother");
+				this.brother = brother;
 			});
 	}
 

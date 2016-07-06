@@ -85,6 +85,8 @@ const barrels: string[] = [
   'app/meeting-create',
   'app/email',
   'app/initiate',
+  'app/event-create',
+  'app/registration',
   /** @cli-barrel */
 ];
 
