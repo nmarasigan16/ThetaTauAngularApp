@@ -6,6 +6,8 @@ import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
 import { Event } from '../../properties/event';
+import { EventService } from '../event.service';
+import { FullPipe } from '../pipes/full.pipe';
 
 @Component({
 	moduleId: module.id,
@@ -13,13 +15,17 @@ import { Event } from '../../properties/event';
 	templateUrl: 'event-detail.html',
 	styleUrls: ['event-detail.css'],
 	directives: [ MATERIAL_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_INPUT_DIRECTIVES ],
-	providers: [ MATERIAL_PROVIDERS, OVERLAY_PROVIDERS]	
+	providers: [ MATERIAL_PROVIDERS, OVERLAY_PROVIDERS],
+	pipes: [ FullPipe ]
 })
 export class EventDetailComponent{
 
 	form: any;
+	route_sub: any;
+	event_sub: any;
+	event: Event;
 
-	constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+	constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private service: EventService) {
 	}
 
 	ngOnInit() {
@@ -27,9 +33,21 @@ export class EventDetailComponent{
 		this.form = this.fb.group({
 			hours: ['', Validators.pattern('[0-9]+')],
 		});
+
+		this.route_sub = this.route.params.subscribe(
+			params => {
+				let id = params['id'];
+				this.getEvent(id)
+			},
+			error => console.error(error));
 	}
 
-	event: Event = { "id": 1, "name": "Happy Hour", "date": new Date(2016, 8, 16, 18, 0), "location": "Regends", "about": "This is a get together between a couple of friendly brothers", "type": "BR" }
+	getEvent(id:string){
+		this.event_sub = this.service.getEvent(id).subscribe(
+			event => {
+				this.event = event;
+			});
+	}
 
 	goBack() {
 		let link = ['/events'];

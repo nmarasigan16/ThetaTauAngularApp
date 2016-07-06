@@ -1,4 +1,4 @@
-<div style="height:100%;" layout="column" layout-align="center center">
+<div style="height:100%;" layout="column" layout-align="center center" *ngIf="event">
 	<!--dialog-->
 	<md-dialog #add (onClose)="addClose($event)">
       <md-dialog-title>Would you like to add the event for 
@@ -58,7 +58,7 @@
 				<md-list-item class="md-2-line">
 					<i md-icon [ngClass]="{'md-avatar-icon':index === 1}">star</i>
 					<div class="md-list-item-text">
-						<h3>{{event.type}}</h3>
+						<h3>{{event.etype | full}}</h3>
 						<p>Type</p>
 					</div>
 				</md-list-item>

@@ -18,7 +18,6 @@ export class BrotherDetailComponent implements OnInit{
 	}
 	sub: any;
 	user_sub: any;
-	id:number;
 	brother;
 
 	ngOnInit(){
