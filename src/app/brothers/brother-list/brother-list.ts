@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchPipe } from '../pipes/search-pipe';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
@@ -19,6 +19,7 @@ export class BrotherListComponent implements OnInit{
 
 	public brothers;
 	public errorMessage;
+	subscription: any;
 
 	constructor(private router: Router, private service: BrotherService){}
 
@@ -27,7 +28,7 @@ export class BrotherListComponent implements OnInit{
 	}
 
 	getBrothers(){
-		this.service.getBrothers().subscribe(
+		this.subscription = this.service.getBrothers().subscribe(
 			brothers => this.brothers = brothers,
 			error => this.errorMessage = <any>error,
 			() => console.log('got brothers'));
@@ -37,18 +38,10 @@ export class BrotherListComponent implements OnInit{
 		this.router.navigate(['/brothers', id]);
 	}
 
-}
+	ngOnDestroy(){
+		if(this.subscription){
+			this.subscription.unsubscribe();
+		}
+	}
 
-var BROTHERS: Brother[] = [
-	{ "id": 1, "name": "john", "email": "asdas@asdasd", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 2, "name": "chris", "email": "serser@gkldkgl", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 3, "name": "Mike", "email": "ASDA@asdg", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 4, "name": "matt", "email": "abdbdf@asddsdg", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 5, "name": "tom ", "email": "bdbfd@asdgdd", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 6, "name": "jesus", "email": "grgr@gsdgsd", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 7, "name": "jess", "email": "asd@bfdbf", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 8, "name": "brittany", "email": "asd@fhdfh", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 9, "name": "michael", "email": "Gfdgdfg@gfdsd", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 10, "name": "Tom", "email": "asdvfd@asdasd", "phone_number": "123456789", "city": "Champaign" },
-	{ "id": 11, "name": "Link", "email": "fdghdfgh@sadfs", "phone_number": "123456789", "city": "Champaign" },
-]
+}

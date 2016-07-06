@@ -6,8 +6,9 @@ import { CookieService } from 'angular2-cookie/core';
 
 @Injectable()
 export class AuthService{
+	private loggedIn = false;
 	constructor(private http: Http, private urls: UrlService, private cookie: CookieService){
-
+		this.loggedIn = !!this.cookie.get('Token')
 	}
 	private BaseUrl = this.urls.getAPIUrl();
 	private auth_url = this.BaseUrl + '/rest-auth/';
@@ -32,6 +33,11 @@ export class AuthService{
 				return false;
 			})
 			.catch(this.handleError);
+	}
+
+	isLoggedIn(){
+		console.log(this.cookie.get('Token'));
+		return this.loggedIn;
 	}
 
 	private handleError (error: any) {

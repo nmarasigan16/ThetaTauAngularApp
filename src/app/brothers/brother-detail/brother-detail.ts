@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -16,7 +16,8 @@ export class BrotherDetailComponent implements OnInit{
 
 	constructor( private route: ActivatedRoute, private router: Router, private service: BrotherService){
 	}
-	sub:any;
+	sub: any;
+	user_sub: any;
 	id:number;
 	brother;
 
@@ -31,7 +32,7 @@ export class BrotherDetailComponent implements OnInit{
 	}
 
 	getBrother(id){
-		this.service.getBrother(id).subscribe(
+		this.user_sub = this.service.getBrother(id).subscribe(
 			brother => {
 				this.brother = brother
 				console.log("assigned brother");
@@ -44,6 +45,15 @@ export class BrotherDetailComponent implements OnInit{
 	goBack(){
 		let link = ['/brothers'];
 		this.router.navigate(link); 
+	}
+
+	ngOnDestroy(){
+		if(this.user_sub){
+			this.user_sub.unsubscribe();
+		}
+		if(this.sub){
+			this.sub.unsubscribe();
+		}
 	}
 
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MATERIAL_DIRECTIVES} from 'ng2-material';
@@ -21,6 +21,21 @@ import './rxjs-operators';
 })
 
 export class AppComponent {
+  user: string;
+  constructor(zone: NgZone, private service: UrlService){
+  }
+  getUser(){
+    this.service.getUser()
+      .subscribe(
+        user => this.user = user
+        );
+    this.service.getOfficer()
+      .subscribe(
+        success => this.isOfficer = true
+        );
+
+  }
+
   title = 'app works!';
   isPledge: boolean = true;
   isOfficer: boolean = false;
