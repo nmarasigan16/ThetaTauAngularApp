@@ -12,6 +12,7 @@ export class EventService {
   private BaseUrl = this.urls.getAPIUrl();
   private events_url = '/events/';
   private details_url = 'detail/';
+  private add_url = '/hours/update/';
 
 	getEvents(): Observable<Event[]>{
 		let headers = new Headers();
@@ -25,6 +26,16 @@ export class EventService {
 		this.urls.appendHeaders(headers);
 		return this.http.get(
 			this.BaseUrl + this.events_url + this.details_url + id + '/',{headers: headers})
+			.map(this.extractData)
+			.catch(this.handleError);
+	}
+
+	addEvent(id, hours){
+		let headers = new Headers();
+		this.urls.appendHeaders(headers);
+		return this.http.get(
+			this.BaseUrl + this.add_url + id.toString() + '/' + hours.toString() + '/',{headers: headers}
+			)
 			.map(this.extractData)
 			.catch(this.handleError);
 	}

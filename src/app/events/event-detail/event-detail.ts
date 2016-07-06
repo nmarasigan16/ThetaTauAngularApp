@@ -23,6 +23,7 @@ export class EventDetailComponent{
 	form: any;
 	route_sub: any;
 	event_sub: any;
+	add_sub: any;
 	event: Event;
 
 	constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private service: EventService) {
@@ -54,11 +55,18 @@ export class EventDetailComponent{
 		this.router.navigate(link);
 	}
 	addClose(value:number){
-		/**TODO call event adder in the api**/
-		if(this.form.valid)
-		{
-			console.log(value);
+		if(value != -1){
+			this.add_sub = this.service.addEvent(this.event.event_id, value)
+				.subscribe(
+					success => console.log(success.message)
+					);
 		}
+	}
+
+	ngOnDestroy(){
+		this.route_sub.unsubscribe();
+		this.event_sub.unsubscribe();
+		this.add_sub.unsubscribe();
 	}
 
 }
