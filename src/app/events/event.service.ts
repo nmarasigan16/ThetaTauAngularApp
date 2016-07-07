@@ -39,6 +39,19 @@ export class EventService {
 			.map(this.extractData)
 			.catch(this.handleError);
 	}
+
+	createEvent(name:string, date:string, location:string, duration:number, about:string, etype:string){
+		let headers = new Headers();
+		this.urls.appendHeaders(headers);
+		headers.append('Content-Type', 'application/json');
+		console.log(JSON.stringify({name, date, location, duration, about, etype}));
+		return this.http.post(
+			this.BaseUrl + this.events_url + 'create/',
+			JSON.stringify({name, date, location, duration, about, etype}),
+			{headers: headers})
+			.map(this.extractData)
+			.catch(this.handleError);
+	}
 	private handleError (error: any) {
 	  // In a real world app, we might use a remote logging infrastructure
 	  // We'd also dig deeper into the error to get a better message

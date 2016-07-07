@@ -21,8 +21,20 @@ export class EventCreateComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(input:any){
-  	console.log(input);
+  onSubmit(name:string, date:string, time:string, location:string, duration:string, about:string, type:string){
+  	let datetime = this.makeDate(date, time);
+  	this.service.createEvent(name, datetime, location, +duration, about, type).subscribe(
+  		success => console.log(success));
+  }
+
+  makeDate(date:string, time:string):string{
+  	let month = date.slice(0,2);
+  	let day = date.slice(3,5);
+  	let year = date.slice(6,11);
+  	let hour = time.slice(0,2);
+  	let minute = time.slice(3,5);
+  	let datetime = year+month+day+hour+minute;
+  	return datetime;
   }
 
 }
