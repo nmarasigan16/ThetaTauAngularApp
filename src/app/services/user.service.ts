@@ -37,8 +37,15 @@ export class UserService{
 
 	//logout is placed in here so that more services don't need to be injected into the main appcomponent
 	logout(){
+		let url = this.url.getAPIUrl() + '/rest-auth/logout/';
 		this.cookie.remove('Token');
 		this.loggedIn = false;
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		this.http.post(url, {headers: headers})
+			.toPromise()
+			.then(this.extractData)
+			.catch(this.handleError);
 	}
 	private handleError (error: any) {
 	  // In a real world app, we might use a remote logging infrastructure
@@ -49,7 +56,8 @@ export class UserService{
 	  return Observable.throw(errMsg);
 	}
 	private extractData(res: Response){
-		let body = res.json()
+		let body = res.json();
+		console.log(body);
 		return body || {};
 	}
 }

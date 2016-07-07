@@ -77,4 +77,5 @@ var OFFICER_ACTIONS: Action[] = [
   { "name": "Meetings", "description": "Check meetings and take attendance", "link": "/meetings" },
   { "name": "Interviews", "description": "Process interviews", "link": "/interviews/check" },
   { "name": "Email", "description": "Email members", "link": "/email" },
+  { "name": "Create Event", "description": "Create an Event", "link": "/events/create"},
 ]
