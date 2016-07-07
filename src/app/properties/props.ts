@@ -4,3 +4,4 @@ export * from './event';
 export * from './interview';
 export * from './excuse';
 export * from './meeting';
+export * from './attendance';

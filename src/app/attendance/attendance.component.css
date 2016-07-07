@@ -1,8 +1,9 @@
 .wrapper{
 	height: 100%
 }
-md-input{
+input{
 	width:100%;
+	margin-bottom: 10px;
 }
 textarea{
 	width: 100%;
