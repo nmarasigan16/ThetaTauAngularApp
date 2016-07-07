@@ -1,0 +1,20 @@
+md-input{
+	margin-bottom: 5px;
+	margin-left: 4%;
+	width: 90%;
+	margin-right: 4%
+}
+textarea{
+	margin-bottom: 5px;
+	margin-left: 4%;
+	min-height: 50px;
+	width: 90%;
+	margin-right: 4%
+}
+select{
+	margin-left: 4%;
+	margin-bottom: 5px;
+}
+md-card-actions{
+	width:95%;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -34,6 +34,13 @@ export class AttendanceComponent implements OnInit {
   		.subscribe(
   			success => console.log(success)
   			);
+  }
+
+  ngOnDestroy(){
+  	if(this.update_subscription){
+  		this.update_subscription.unsubscribe();
+  	}
+  	this.get_subscription.unsubscribe();
   }
 
 }

@@ -40,7 +40,7 @@ export class EventListComponent implements OnInit{
 	}
 
 	gotoDetail(id:number){
-		this.router.navigate(['/events', id]);
+		this.router.navigate(['/events/detail', id]);
 	}
 
 	ngOnDestroy(){

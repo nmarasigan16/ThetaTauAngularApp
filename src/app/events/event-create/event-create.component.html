@@ -1,0 +1,25 @@
+<div style="height:100%;" layout="column" layout-align="center center">
+	<md-card style="width:33%;">
+		<md-toolbar class="primary" style="position:relative;">
+			Create a Meeting
+		</md-toolbar>
+		<form layout="column" layout-align="start start" #in>
+		<md-content>
+			<!-- TODO VALIDATION -->
+			
+				<md-input name="name" placeholder="Name"></md-input>
+				<md-input name="date" placeholder="Date (DD/MM/YYYY)"></md-input>
+				<md-input name="location" placeholder="Location"></md-input>
+				<md-input name="duration" placeholder="Duration"></md-input>
+				<textarea placeholder="About"></textarea>
+				<select name="etype">
+					<option *ngFor="let type of types">{{type.value}}</option>
+				</select>
+			
+		</md-content>
+		<md-card-actions layout="row" layout-align="end center">
+			<button submit md-raised-button type="submit" (click)="onSubmit(in.value)">Create</button>
+		</md-card-actions>
+		</form>
+	</md-card>
+</div>
