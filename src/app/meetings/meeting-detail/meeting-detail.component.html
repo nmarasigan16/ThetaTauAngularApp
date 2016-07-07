@@ -1,4 +1,4 @@
-<div layout="column" layout-align="start center">
+<div layout="column" layout-align="start center" *ngIf="meeting">
 	<md-dialog #delete (onClose)="deleteClose($event)">
       <md-dialog-title>Are you sure you want to delete this meeting?
       </md-dialog-title>
@@ -116,10 +116,10 @@
 			</md-list>
 		</md-card-content>
 		<md-card-actions layout="row" layout-align="end center">
-			<button md-raised-button>
+			<button md-raised-button (click)="onProcess(i, 0)">
 			Deny
 			</button>
-			<button md-raised-button submit (click)="onAccept(i)">
+			<button md-raised-button submit (click)="onProcess(i, 1)">
 			Accept
 			</button>
 		</md-card-actions>

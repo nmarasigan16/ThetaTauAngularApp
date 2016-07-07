@@ -26,21 +26,31 @@ export class AppComponent {
   user: string;
   constructor(private service: UserService, private router: Router){
   }
+  user_sub:any;
+  officer_sub:any;
+
   ngOnInit(){
     this.loggedIn = this.service.isLoggedIn();
     if(this.loggedIn){
+      this.checkUser();
       this.getUser();
     }
   }
 
+  checkUser(){
+    console.log(this.service.checkUser());
+    this.isOfficer = this.service.checkOfficer();
+    console.log(this.isPledge != undefined && this.isOfficer != undefined);
+  }
+
   getUser(){
-    this.service.getUser()
+    this.user_sub = this.service.getUser()
       .subscribe(
         user => {
           this.isPledge = user.status == 'P';
         }
         );
-    this.service.getOfficer()
+    this.officer_sub = this.service.getOfficer()
       .subscribe(
         success => this.isOfficer = true
         );
@@ -54,13 +64,18 @@ export class AppComponent {
 
   title = 'app works!';
   loggedIn: boolean;
-  isPledge: boolean = false;
-  isOfficer: boolean = false;
+  isPledge: boolean;
+  isOfficer: boolean;
   actions = ACTIONS;
   pledge_actions = PLEDGE_ACTIONS;
   officer_actions= OFFICER_ACTIONS;
   selectedAction: Action;
   onSelect(action: Action) { this.selectedAction = action; }
+
+  ngOnDestroy(){
+    this.user_sub.unsubscribe();
+    this.officer_sub.unsubscribe();
+  }
 }
 
 var ACTIONS: Action[] = [

@@ -7,6 +7,7 @@ import { Meeting } from '../../properties/meeting';
 import { Excuse } from '../../properties/excuse';
 import { TypePipe } from '../pipes/type.pipe';
 import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
+import { MeetingService } from '../meeting.service';
 
 @Component({
   moduleId: module.id,
@@ -19,20 +20,33 @@ import { OVERLAY_PROVIDERS } from '@angular2-material/core/overlay/overlay';
 })
 export class MeetingDetailComponent implements OnInit {
 
-	meeting: Meeting = { "id": 1, "password": "balls", "mtype": "GM", "date": new Date(2016, 9, 12), "chapter": "KRAPPA!", "attendees": [], "excuses": undefined }
+	meeting: Meeting;
+	excuses: Excuse[];
+	route_sub:any;
+	meeting_sub:any;
+	errorMessage:string;
 
-	excuses: Excuse[] = [
-		{"id": 1, "name": "Nathan", "excuse": "exam"},
-		{ "id": 1, "name": "Nathan", "excuse": "exam" },
-		{ "id": 1, "name": "Nathan", "excuse": "exam" },
-		{ "id": 1, "name": "Nathan", "excuse": "exam" },
-		{ "id": 1, "name": "Nathan", "excuse": "exam" },
-
-	];
-
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: MeetingService, private route: ActivatedRoute) {}
 
   ngOnInit() {
+	this.route_sub = this.route.params.subscribe(
+		params => {
+			let id = params['id'];
+			this.getMeeting(id)
+		},
+		error => console.error(error));
+}
+
+  getMeeting(id:string){
+  	this.meeting_sub = this.service.getMeeting(id)
+  		.subscribe(
+  			meeting => {
+  				this.meeting = meeting;
+  				this.excuses = meeting.excuses;
+  			},
+  			error => this.errorMessage = error
+  			);
+
   }
 
   	goBack(){
@@ -54,11 +68,12 @@ export class MeetingDetailComponent implements OnInit {
 	takeClose(status:number){
 		if (status == 1) {
 			/** take attendance **/
-			console.log(status);
+			this.service.takeAttendance(this.meeting.meeting_id);
+			window.location.reload();
 		}
 	}
-	onAccept(index:number){
-		console.log(index);
-		this.excuses.splice(index, 1);
+	onProcess(index:number, status:number){
+		let excuse = this.excuses.splice(index, 1)[0];
+		this.service.approveExcuse(excuse.excuse_id, status);
 	}
 }

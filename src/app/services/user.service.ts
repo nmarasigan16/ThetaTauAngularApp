@@ -7,8 +7,17 @@ import { UrlService } from './url.service';
 @Injectable()
 export class UserService{
 	private loggedIn = false;
+	private user;
+	private officer;
 	constructor(private url: UrlService, private cookie: CookieService, private http: Http){
 		this.loggedIn = !!this.cookie.get('Token')
+	}
+
+	checkOfficer(){
+		return this.officer;
+	}
+	checkUser(){
+		return this.user;
 	}
 
 	getUser(){
@@ -16,7 +25,13 @@ export class UserService{
 		let headers = new Headers();
 		this.url.appendHeaders(headers);
 		return this.http.get(url, {headers: headers})
-		           .map(this.extractData)
+		           .map(res => res.json())
+		           .map((res) => {
+		           	if(res.status){
+		           		this.user = res.status;
+		           		return this.user == 'P';
+		           	}
+		           })
 	               .catch(this.handleError);
 	}
 	getOfficer(){
@@ -24,7 +39,11 @@ export class UserService{
 		let headers = new Headers();
 		this.url.appendHeaders(headers);
 		return this.http.get(url, {headers: headers})
-	               .catch(this.handleError);
+					.map(res => {
+						this.officer = true;
+						return true;
+					})
+	               	.catch(this.handleError);
 	}
 
 	isLoggedIn(){

@@ -29,3 +29,8 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 ## Further help
 
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Todos
+
+This app currently has performance issues.  There are several services that reload every single time the page is refreshed, and while not leaking memory, it would be interesting to see if the services were bootstrapped in main.ts would this improve performance instead of having to make two api calls.

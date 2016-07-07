@@ -6,16 +6,16 @@
 		<md-content>
 			<!-- TODO VALIDATION -->
 			<form layout="column" layout-align="start start">
-				<md-input  placeholder="Date (DD/MM/YYYY)"></md-input>
-				<select>
-					<option *ngFor="let meeting_type of meeting_types">{{meeting_type | type}}</option>
+				<md-input  #date placeholder="Date (MM/DD/YYYY)"></md-input>
+				<select #type>
+					<option *ngFor="let meeting_type of meeting_types, let i=index" [value]="i">{{meeting_type | type}}</option>
 				</select>
-				<md-input placeholder="Meeting Password"></md-input>
+				<md-input #password placeholder="Meeting Password"></md-input>
 			</form>
 		</md-content>
 		<md-card-actions layout="row" layout-align="end center">
 			<button md-raised-button (click)="goBack()">Cancel</button>
-			<button submit md-raised-button>Create</button>
+			<button submit md-raised-button (click)="onCreate(date.value,type.value,password.value)">Create</button>
 		</md-card-actions>
 	</md-card>
 </div>

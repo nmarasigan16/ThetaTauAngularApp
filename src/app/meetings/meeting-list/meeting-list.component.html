@@ -19,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let meeting of meetings | filterBy:filter_type" (click)="gotoDetail(meeting.id)">
+        <tr *ngFor="let meeting of meetings | filterBy:filter_type" (click)="gotoDetail(meeting.meeting_id)">
           <td class="md-text-cell">{{meeting.date | date}}</td>
           <td class="md-text-cell">{{meeting.mtype | type}}</td>
         </tr>

@@ -5,6 +5,7 @@ import { APP_ROUTER_PROVIDERS } from './app/app.routes';
 import { disableDeprecatedForms, provideForms } from '@angular/forms';
 import { HTTP_PROVIDERS, RequestOptions } from '@angular/http';
 import { ExRequestOptions } from './app/services/request_options.service';
+import { UserService } from './app/services/user.service';
 
 if (environment.production) {
   enableProdMode();
