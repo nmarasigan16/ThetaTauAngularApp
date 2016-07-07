@@ -20,15 +20,16 @@ export class AttendanceService {
 	               .catch(this.handleError);
 	}
 	
-	updateAttendance(password:string, excuse:string):Observable<Attendance>{
+	updateAttendance(password:string, excuse:string){
 		let headers = new Headers();
 		this.urls.appendHeaders(headers);
 		headers.append('Content-Type', 'application/json');
-		return this.http.put(
+		this.http.put(
 			this.BaseUrl + this.url,
 			JSON.stringify({password, excuse}),
 			{headers: headers})
-			.map(this.extractData)
+			.toPromise()
+			.then(this.extractData)
 			.catch(this.handleError);
 	}
 	

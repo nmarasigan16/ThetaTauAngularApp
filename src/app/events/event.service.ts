@@ -44,12 +44,12 @@ export class EventService {
 		let headers = new Headers();
 		this.urls.appendHeaders(headers);
 		headers.append('Content-Type', 'application/json');
-		console.log(JSON.stringify({name, date, location, duration, about, etype}));
-		return this.http.post(
+		this.http.post(
 			this.BaseUrl + this.events_url + 'create/',
 			JSON.stringify({name, date, location, duration, about, etype}),
 			{headers: headers})
-			.map(this.extractData)
+			.toPromise()
+			.then(this.extractData)
 			.catch(this.handleError);
 	}
 	private handleError (error: any) {

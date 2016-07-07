@@ -7,6 +7,7 @@ import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { Meeting } from '../../properties/meeting';
+import { MeetingService } from '../meeting.service';
 
 @Component({
   moduleId: module.id,
@@ -17,11 +18,23 @@ import { Meeting } from '../../properties/meeting';
   directives: [ MATERIAL_DIRECTIVES, MD_INPUT_DIRECTIVES, MD_TOOLBAR_DIRECTIVES ]
 })
 export class MeetingListComponent implements OnInit {
-  public meeting_types = MEETING_TYPES;
+  meeting_types = MEETING_TYPES;
+  subscription:any;
+  meetings: Meeting[];
+  errorMessage: string;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private service: MeetingService) {}
 
   ngOnInit() {
+    this.getMeetings();
+  }
+
+  getMeetings(){
+    this.subscription = this.service.getMeetings()
+      .subscribe(
+        meetings => this.meetings = meetings,
+        error => this.errorMessage = error
+        )
   }
 
   gotoCreate(){
@@ -32,9 +45,6 @@ export class MeetingListComponent implements OnInit {
     this.router.navigate(['/meetings/detail', id]);
   }
 
-  meetings: Meeting[] = [
-    { "id": 1, "password": "balls", "mtype": "GM", "date": new Date(2016, 9, 12), "chapter": "KRAPPA!", "attendees": [], "excuses": [] },
-  ];
 
 }
 

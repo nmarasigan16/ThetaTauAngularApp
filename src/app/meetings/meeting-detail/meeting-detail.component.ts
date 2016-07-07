@@ -57,4 +57,8 @@ export class MeetingDetailComponent implements OnInit {
 			console.log(status);
 		}
 	}
+	onAccept(index:number){
+		console.log(index);
+		this.excuses.splice(index, 1);
+	}
 }

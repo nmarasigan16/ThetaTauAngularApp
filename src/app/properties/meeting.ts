@@ -1,7 +1,7 @@
 import { Excuse } from './excuse';
 
 export class Meeting{
-	id: number;
+	meeting_id: number;
 	password: string;
 	mtype: string;
 	date: Date;

@@ -19,7 +19,6 @@ export class AttendanceComponent implements OnInit {
 
   attendance: Attendance;
   get_subscription: any;
-  update_subscription: any;
 
   ngOnInit() {
   	this.get_subscription = this.service.getAttendance()
@@ -30,16 +29,10 @@ export class AttendanceComponent implements OnInit {
   }
 
   onSubmit(){
-  	this.update_subscription = this.service.updateAttendance(this.attendance.password, this.attendance.excuse)
-  		.subscribe(
-  			success => console.log(success)
-  			);
+  	this.service.updateAttendance(this.attendance.password, this.attendance.excuse);
   }
 
   ngOnDestroy(){
-  	if(this.update_subscription){
-  		this.update_subscription.unsubscribe();
-  	}
   	this.get_subscription.unsubscribe();
   }
 

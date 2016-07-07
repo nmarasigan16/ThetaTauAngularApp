@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -23,8 +23,7 @@ export class EventCreateComponent implements OnInit {
 
   onSubmit(name:string, date:string, time:string, location:string, duration:string, about:string, type:string){
   	let datetime = this.makeDate(date, time);
-  	this.service.createEvent(name, datetime, location, +duration, about, type).subscribe(
-  		success => console.log(success));
+  	this.service.createEvent(name, datetime, location, +duration, about, type);
   }
 
   makeDate(date:string, time:string):string{

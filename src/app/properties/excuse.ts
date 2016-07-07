@@ -1,5 +1,5 @@
 export class Excuse{
-	id: number;
+	excuse_id: number;
 	name: string;
 	excuse: string;
 }
