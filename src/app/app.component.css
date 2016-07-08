@@ -20,6 +20,10 @@
 	color: #FFCC33;
 }
 
+:host /deep/ md-content{
+	height: 100% !important;
+}
+
 md-sidenav{
 	min-width: 15%;
 }
