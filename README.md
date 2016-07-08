@@ -31,6 +31,6 @@ Run `ng github-pages:deploy` to deploy to Github Pages.
 To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 
-## Todos
+## Bugs
 
-This app currently has performance issues.  There are several services that reload every single time the page is refreshed, and while not leaking memory, it would be interesting to see if the services were bootstrapped in main.ts would this improve performance instead of having to make two api calls.
+Currently, the ng2-material package does not support Angular 2 Material alpha 6 and Angular 2 rc3.  Because of this, in ng2-materials index.js, the overlay-container is not functional.  This is avoidable with some clever bootstrapping, but for now as this app is still in development we await the next release of ng2-material.  The issue is documented in https://github.com/justindujardin/ng2-material/issues/271
