@@ -1,23 +1,4 @@
-<div style="height:100%;" layout="column" layout-align="center center" *ngIf="event">
-	<!--dialog-->
-	<md-dialog #add (onClose)="addClose($event)">
-      <md-dialog-title>Would you like to add the event for 
-      <form>
-      <md-input #in placeholder="Hours" type="text" ngControl="hours" pattern="[0-9]+"></md-input>
-      </form>
-      hours?
-      </md-dialog-title>
-      <span flex></span>
-      <md-dialog-actions>
-  	      <button md-button (click)="add.close(-1)">
-	      	<span>Cancel</span>
-	      </button>
-	      <button submit md-button (click)="add.close(in.value)">
-	      	<span>Add</span>
-	      </button>
-      </md-dialog-actions>
-    </md-dialog>
-
+<div style="width:100%" layout="column" layout-align="start center" *ngIf="event">
     <!--card-->
 	<md-card style="width:33%;">
 		<md-toolbar class="primary" style="position:relative;">
@@ -64,10 +45,21 @@
 				</md-list-item>
 			</md-list>
 		</md-content>
-		<md-card-actions layout="row" layout-align="end center" style="height:0px;">
-			<button md-fab layout-align="end center" class="add" (click)="add.show()">
-				<i md-icon>add</i>
-			</button>
-		</md-card-actions>
 	</md-card>
+</div>
+<div *ngIf="event" layout="column" layout-align="start center">
+	<md-card #add>
+      	<md-toolbar class="primary" style="position:relative;">
+      		<span>Add {{event.name}}</span>
+		</md-toolbar>
+		<md-card-content>
+			<p>Input the number of hours that you were at the event</p>
+	      	<form [formGroup]="form">
+	      		<md-input #in placeholder="Hours" type="text" formControlName="hours"></md-input>
+	      	</form>
+	    </md-card-content>
+		<md-card-actions layout="row" layout-align="end center">
+			<button md-raised-button  submit [disabled]="!form.valid">Add</button>
+		</md-card-actions>
+    </md-card>
 </div>

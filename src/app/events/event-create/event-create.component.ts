@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES } from 'ng2-material';
+import { MdDialog } from 'ng2-material/components/dialog/dialog';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
 import { MD_INPUT_DIRECTIVES } from '@angular2-material/input';
 import { Event } from '../../properties/props';

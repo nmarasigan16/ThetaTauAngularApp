@@ -3,7 +3,7 @@
 		<md-toolbar breakaction="show">
 			<span>Events</span>
 			<span flex></span>
-			<select #moo (change)="type=moo.value">
+			<select #moo (change)="type=moo.value" style="width:10%;">
 				<option *ngFor="let t of types">{{t.label}}</option>
 			</select>
 			<md-input type="search" #input (keyup)="term=input.value" placeholder="Search"></md-input>

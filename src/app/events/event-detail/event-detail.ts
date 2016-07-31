@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/common';
+import { REACTIVE_FORM_DIRECTIVES, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MATERIAL_DIRECTIVES, MATERIAL_PROVIDERS } from 'ng2-material';
 import { MD_TOOLBAR_DIRECTIVES } from '@angular2-material/toolbar';
@@ -14,13 +14,13 @@ import { FullPipe } from '../pipes/full.pipe';
 	selector: 'event-detail',
 	templateUrl: 'event-detail.html',
 	styleUrls: ['event-detail.css'],
-	directives: [ MATERIAL_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_INPUT_DIRECTIVES ],
+	directives: [ MATERIAL_DIRECTIVES, MD_TOOLBAR_DIRECTIVES, MD_INPUT_DIRECTIVES, REACTIVE_FORM_DIRECTIVES ],
 	providers: [ MATERIAL_PROVIDERS, OVERLAY_PROVIDERS],
 	pipes: [ FullPipe ]
 })
 export class EventDetailComponent{
 
-	form: any;
+	form: FormGroup;
 	route_sub: any;
 	event_sub: any;
 	add_sub: any;
@@ -32,7 +32,7 @@ export class EventDetailComponent{
 	ngOnInit() {
 		/** implement service to get specific event**/
 		this.form = this.fb.group({
-			hours: ['', Validators.pattern('[0-9]+')],
+			hours: ['', [Validators.required, Validators.pattern('[0-9]+(\.[0-9]+)?')]],
 		});
 
 		this.route_sub = this.route.params.subscribe(
